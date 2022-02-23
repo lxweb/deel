@@ -1,10 +1,11 @@
-const express = require('express');
-const router = express.Router();
+const contracts = require('./contracts');
+const admin = require('./admin');
+const jobs = require('./jobs');
+const balances = require('./balances');
 
-router.get('/', async(req, res) => {
-    res.json({
-        "status": 1
-    })
-})
-
-module.exports = router;
+module.exports = {
+    contracts,
+    admin,
+    jobs,
+    balances
+};
