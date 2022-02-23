@@ -11,7 +11,7 @@ const {getMyContractsByID} = require('../controllers/contract');
 
 /**
  * FIXED!
- * @description it returns THe contract if the profile match with the contract owner
+ * @description it returns The contract if the profile match with the contract owner
  * @returns contract by id
  */
  router.get('/contracts/:id', getProfile ,async (req, res) =>{

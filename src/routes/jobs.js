@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {getProfile} = require('../middleware/getProfile');
-const { Op } = require("sequelize");
 
 const { getMyJobs, getMyUnpaidJobs } = require('../controllers/job');
 
