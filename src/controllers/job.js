@@ -1,6 +1,4 @@
-const { Op } = require("sequelize");
-
-const { getMyContractsIDs } = require('../controllers/contract');
+const { getMyContractsIDs } = require('./contract');
 
 /**
  * 
@@ -25,9 +23,9 @@ const getMyJobs = async ( app, profileId ) => {
  * @param {number} profileId 
  * @returns Jobs[]
  */
-const getMyUnpaidJobs = async ( app, profileId ) => {
+const getMyUnpaidJobs = async ( app, profileId, roleFilter=false) => {
     const {Job} = app.get('models');
-    const contractIDs = await getMyContractsIDs(app, profileId);
+    const contractIDs = await getMyContractsIDs(app, profileId, roleFilter);
    
     const jobs = await Job.findAll({
         where: {
