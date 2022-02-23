@@ -27,22 +27,54 @@ const getMyContractsByID =  async (app, profileId, contractId) => {
  * @param {*} profileId 
  * @returns 
  */
-const getMyContractsIDs = async ( app, profileId ) => {
+const getMyContractsIDs = async ( app, profileId, roleFilter=false) => {
+    const {Contract} = app.get('models');
+
+    let filter = {
+        status: 'in_progress',
+        [Op.or]: {
+            ClientId: profileId,
+            ContractorId: profileId
+        }
+    }
+    switch(roleFilter){
+        case 'client':
+            filter = {
+                status: 'in_progress',
+                ClientId: profileId,
+            }
+            
+            break;
+        case 'contractor':
+            filter = {
+                status: 'in_progress',
+                ContractorId: profileId
+            }
+            break;
+    }
+    const contractIDs = await Contract.findAll({
+        attributes: ['id'],
+        where: filter,
+    })
+    return contractIDs.map(c => c.id);
+}
+
+
+const getMyContractsAsClient = async ( app, profileId ) => {
     const {Contract} = app.get('models');
     const contractIDs = await Contract.findAll({
         attributes: ['id'],
         where: {
             status: 'in_progress',
             [Op.or]: {
-                ClientId: profileId,
-                ContractorId: profileId
+                ClientId: profileId
             }
         },
     })
     return contractIDs.map(c => c.id);
 }
-
 module.exports = {
     getMyContractsIDs,
-    getMyContractsByID
+    getMyContractsByID,
+    getMyContractsAsClient
 }
