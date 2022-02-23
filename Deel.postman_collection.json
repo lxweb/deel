@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "28a155fb-4787-4e4f-8be7-2b19eeb322b6",
+		"name": "Deel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ContractById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}:{{API_PORT}}/contracts/1",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"port": "{{API_PORT}}",
+					"path": [
+						"contracts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notTerminatedContracts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}:{{API_PORT}}/contracts",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"port": "{{API_PORT}}",
+					"path": [
+						"contracts"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnpaidJobs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "7",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}:{{API_PORT}}/jobs/unpaid",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"port": "{{API_PORT}}",
+					"path": [
+						"jobs",
+						"unpaid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnpaidJobById",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "7",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}:{{API_PORT}}/jobs/4/pay",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"port": "{{API_PORT}}",
+					"path": [
+						"jobs",
+						"4",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_HOST",
+			"value": "127.0.0.1"
+		},
+		{
+			"key": "API_PORT",
+			"value": "3001"
+		}
+	]
+}
