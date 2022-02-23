@@ -93,20 +93,46 @@
 				"header": [
 					{
 						"key": "profile_id",
-						"value": "7",
+						"value": "1",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{API_HOST}}:{{API_PORT}}/jobs/4/pay",
+					"raw": "{{API_HOST}}:{{API_PORT}}/jobs/2/pay",
 					"host": [
 						"{{API_HOST}}"
 					],
 					"port": "{{API_PORT}}",
 					"path": [
 						"jobs",
-						"4",
+						"2",
 						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_HOST}}:{{API_PORT}}/balances/deposit/4",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"port": "{{API_PORT}}",
+					"path": [
+						"balances",
+						"deposit",
+						"4"
 					]
 				}
 			},
