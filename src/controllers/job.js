@@ -78,6 +78,7 @@ const payJob = async (app, profileId, jobId, contractorId) => {
     return { status: 1 };
 }
 
+
 module.exports = {
     getMyJobs,
     getMyUnpaidJobs,
