@@ -137,6 +137,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GetBestProfession",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_HOST}}:{{API_PORT}}/admin/best-profession?start=01-01-2020&end=01-01-2023",
+					"host": [
+						"{{API_HOST}}"
+					],
+					"port": "{{API_PORT}}",
+					"path": [
+						"admin",
+						"best-profession"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "01-01-2020"
+						},
+						{
+							"key": "end",
+							"value": "01-01-2023"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
