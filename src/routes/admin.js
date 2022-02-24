@@ -41,11 +41,42 @@ router.get('/admin/best-profession', async(req,res)=>{
   */
 router.get('/admin/best-clients', async(req,res)=>{
     const { start, end, limit } = req.query;
-    res.json({
-        start,
-        end,
-        limit
-    })
+    const startingDate = new Date(start).toISOString(); //"2020-01-01 01:00:35"
+    const endDate = new Date(end).toISOString();
+    let parsedLimit = parseInt(limit);
+    parsedLimit = isNaN(parsedLimit)?2:parsedLimit;
+    const sequelize = req.app.get('sequelize');
+    const query = `SELECT 
+            Profiles.id, 
+            Profiles.firstName, 
+            Profiles.lastName, 
+            Contracts.createdAt, 
+            SUM(Jobs.price) as TotalPrice 
+        FROM 
+            Profiles 
+        LEFT JOIN 
+            Contracts, 
+            Jobs 
+        ON 
+            Profiles.id = Contracts.ContractorId AND 
+            Contracts.id = Jobs.ContractId 
+        WHERE 
+            Jobs.paid = 1 AND
+            Jobs.paymentDate BETWEEN datetime("${startingDate}") AND datetime("${endDate}")
+        GROUP BY 
+            Profiles.Id 
+        ORDER BY TotalPrice DESC 
+        LIMIT ${parsedLimit};`;
+
+    const [result, metadata] = await sequelize.query(query);
+    const parsedResult = result.map( r => {
+        return {
+            id: r.id,
+            fullName: `${r.firstName} ${r.lastName}`,
+            paid: r.TotalPrice
+        }
+    } )
+    res.json(parsedResult);
 })
 
 module.exports = router;
